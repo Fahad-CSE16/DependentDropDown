@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+
+<h1 class="text-center"> This Is DropDown HomePage</h1>
+<div class="container" id="app">
+    <div class="row">
+    <form action="" method="post">
+        <div class="col">
+            <select class="form-control form-control-sm  mx-2  my-2" v-model="country_selected" @change="loadDiv($event)">
+                <option v-for="(p,i) in country" :key="i" :value="p">[[p.name]]</option>
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control form-control-sm mx-2  my-2"  v-model="division_selected" @change="loadDis($event)">
+                <option>Division</option>
+             <option v-for="(p,i) in div" :key="i" :value="p">[[p.name]]</option>
+
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control form-control-sm  mx-2  my-2" v-model="district_selected" @change="loadSub($event)">
+                <option v-for="(p,i) in dis" :key="i" :value="p">[[p.name]]</option>
+            </select>
+        </div>
+        <div class="col">
+            <select class="form-control form-control-sm  mx-2 my-2">
+                <option v-for="(p,i) in sub" :key="i" :value="p">[[p.name]]</option>
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+</div>
+
+    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+var app = new Vue({
+    el:"#app",
+    delimiters: ['[[', ']]'],
+    data:{
+        country: {{country_list|safe}},
+        division: {{division_list|safe}},
+        district: {{district_list|safe}},
+        subdistrict: {{subdistrict_list|safe}},
+
+        country_selected: "",
+        div:[],
+        division_selected: "",
+        dis:[],
+        district_selected: "",
+        sub:[],
+
+
+    },
+    mounted: function(){
+        console.log("Mounted");  
+    },
+    methods:{ 
+        loadDiv(){
+            this.div=[];
+            for(let i=0; i< this.division.length; i++){
+                if(this.country_selected.name==this.division[i].country__name){
+                    this.div.push({name:this.division[i].name});
+                }
+            }
+            this.loadDis();
+            this.loadSub();
+        },
+        loadDis(){
+            this.dis=[];
+            for(let i=0; i< this.district.length; i++){
+                if(this.division_selected.name==this.district[i].division__name){
+                    this.dis.push({name:this.district[i].name});
+                }
+            }
+            this.loadSub();
+        },
+        loadSub(){
+            this.sub=[];
+            for(let i=0; i< this.subdistrict.length; i++){
+                if(this.district_selected.name==this.subdistrict[i].district__name){
+                    this.sub.push({name:this.subdistrict[i].name});
+                }
+            }
+        },
+
+    },
+})
+</script>
+</body>
+</html>
