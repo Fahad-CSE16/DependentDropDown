@@ -25,6 +25,7 @@ jQuery(function($){
                     console.log(result);
                     cols = document.getElementById("id_division");
                     cols.options.length = 0;
+                    cols.options.add(new Option("Division", "Division"));
                     for(var k in result){
                         cols.options.add(new Option(k, result[k]));
                     }
@@ -46,6 +47,8 @@ jQuery(function($){
                     console.log(result);
                     cols = document.getElementById("id_district");
                     cols.options.length = 0;
+                    cols.options.add(new Option("District", "District"));
+
                     for(var k in result){
                         cols.options.add(new Option(k, result[k]));
                     }
@@ -67,6 +70,8 @@ jQuery(function($){
                     console.log(result);
                     cols = document.getElementById("id_subdistrict");
                     cols.options.length = 0;
+                    cols.options.add(new Option("Subdistrict", "Subdistrict"));
+                    
                     for(var k in result){
                         cols.options.add(new Option(k, result[k]));
                     }
