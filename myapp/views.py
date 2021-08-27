@@ -26,3 +26,16 @@ def indexview(request):
         "subdistrict_list":subdistrict_list,
     }
     return render(request, 'index.html',context)
+
+
+
+from .models import Contact
+from .serializers import ContactSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+class ContactListCreateAPIView(ListCreateAPIView):
+    serializer_class=ContactSerializer
+    queryset=Contact.objects.all()
+class ContactRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class=ContactSerializer
+    queryset=Contact.objects.all()
+    lookup_field='id'
