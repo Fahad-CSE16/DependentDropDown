@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from myapp.views import *
 from myapp.api import *
 from django.conf import settings
@@ -13,6 +13,7 @@ urlpatterns = [
     path('divisions/',  DivisionListAPIView.as_view()),
     path('districts/',  DistrictListAPIView.as_view()),
     path('subdistricts/', SubDistrictListAPIView.as_view()),
+    path('admindrop/',include('admindrop.urls')),
     path('contact/<int:id>/',ContactRetrieveUpdateDestroyAPIView.as_view()),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
