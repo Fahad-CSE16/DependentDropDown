@@ -31,7 +31,7 @@ jQuery(function($){
                     }
                 },
                 headers: {
-                    "X-CSRFToken": getCookie("csrftoken")
+                    "X-CSRFToken": {{csrf_token}}
                 },
                 error: function(e){
                     console.error(JSON.stringify(e));
@@ -54,7 +54,7 @@ jQuery(function($){
                     }
                 },
                 headers: {
-                    "X-CSRFToken": getCookie("csrftoken")
+                    "X-CSRFToken": {{csrf_token}}
                 },
                 error: function(e){
                     console.error(JSON.stringify(e));
@@ -77,7 +77,7 @@ jQuery(function($){
                     }
                 },
                 headers: {
-                    "X-CSRFToken": getCookie("csrftoken")
+                    "X-CSRFToken": {{csrf_token}}
                 },
                 error: function(e){
                     console.error(JSON.stringify(e));
